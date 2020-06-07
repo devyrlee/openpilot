@@ -58,13 +58,23 @@ class CarInterface(CarInterfaceBase):
     tire_stiffness_factor = 0.75
 
     if candidate == CAR.SANTAFE:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      tire_stiffness_factor = 0.5 # LiveParameters (Tunder's 2020)
+      ret.steerRateCost = 1.0
+      ret.steerRatio = 12.0
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1830. + STD_CARGO_KG
       ret.wheelbase = 2.765
       # Values from optimizer
-      ret.steerRatio = 13.8  # 13.8 is spec end-to-end
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.steerRatio = 13.8  # 13.8 is spec end-to-end
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.SORENTO:
       ret.lateralTuning.init('indi')
       ret.lateralTuning.indi.innerLoopGain = 3.0
@@ -83,124 +93,199 @@ class CarInterface(CarInterfaceBase):
       #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
       #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.GENESIS:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      tire_stiffness_factor = 0.5 # LiveParameters (Tunder's 2020)
+      ret.steerRateCost = 1.0
+      ret.steerRatio = 13.0
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 2060. + STD_CARGO_KG
       ret.wheelbase = 3.01
-      ret.steerRatio = 16.5
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
+      #ret.steerRatio = 16.5
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
     elif candidate in [CAR.K5, CAR.SONATA]:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1470. + STD_CARGO_KG
       ret.wheelbase = 2.80
       ret.steerRatio = 12.75
       ret.steerRateCost = 0.4
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.SONATA_TURBO:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      tire_stiffness_factor = 0.5 # LiveParameters (Tunder's 2020)
+      ret.steerRateCost = 1.0
+      ret.steerRatio = 12.0
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1565. + STD_CARGO_KG
       ret.wheelbase = 2.80
-      ret.steerRatio = 14.4 * 1.15   # 15% higher at the center seems reasonable
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.steerRatio = 14.4 * 1.15   # 15% higher at the center seems reasonable
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.K5_HEV:
-      ret.lateralTuning.pid.kf = 0.00006
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      tire_stiffness_factor = 0.7
+      #ret.lateralTuning.pid.kf = 0.00006
       ret.mass = 1595. + STD_CARGO_KG
       ret.wheelbase = 2.80
       ret.steerRatio = 12.75
-      ret.steerRateCost = 0.4
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      ret.steerRateCost = 0.45
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate in [CAR.GRANDEUR, CAR.K7]:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1570. + STD_CARGO_KG
       ret.wheelbase = 2.885
-      ret.steerRatio = 12.5
+      ret.steerRatio = 13
       ret.steerRateCost = 0.4
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate in [CAR.GRANDEUR_HEV, CAR.K7_HEV]:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1675. + STD_CARGO_KG
       ret.wheelbase = 2.885
       ret.steerRatio = 12.5
       ret.steerRateCost = 0.4
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.STINGER:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerActuatorDelay = 0.08 # Stinger GT Limited AWD 3.3T stock value (Tunder's 2020) 
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      tire_stiffness_factor = 0.5 # LiveParameters (Tunder's 2020)
+      ret.steerRateCost = 1.0
+      ret.steerRatio = 12.0
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1825. + STD_CARGO_KG
       ret.wheelbase = 2.78
-      ret.steerRatio = 14.4 * 1.15   # 15% higher at the center seems reasonable
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.steerRatio = 14.4 * 1.15   # 15% higher at the center seems reasonable
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.KONA:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1330. + STD_CARGO_KG
       ret.wheelbase = 2.6
       ret.steerRatio = 13.5   #Spec
       ret.steerRateCost = 0.4
       tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.KONA_HEV:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1330. + STD_CARGO_KG
       ret.wheelbase = 2.6
       ret.steerRatio = 13.5   #Spec
       ret.steerRateCost = 0.4
       tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.KONA_EV:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1330. + STD_CARGO_KG
       ret.wheelbase = 2.6
       ret.steerRatio = 13.5   #Spec
       ret.steerRateCost = 0.4
       tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
-    elif candidate == CAR.NIRO_HEV:
-      ret.lateralTuning.pid.kf = 0.00005
-      ret.mass = 1425. + STD_CARGO_KG
-      ret.wheelbase = 2.7
-      ret.steerRatio = 13.73   #Spec
-      tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
-    elif candidate == CAR.NIRO_EV:
-      ret.lateralTuning.pid.kf = 0.00005
-      ret.mass = 1425. + STD_CARGO_KG
-      ret.wheelbase = 2.7
-      ret.steerRatio = 13.73   #Spec
-      tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.IONIQ_HEV:
-      ret.lateralTuning.pid.kf = 0.00006
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00006
       ret.mass = 1275. + STD_CARGO_KG
       ret.wheelbase = 2.7
       ret.steerRatio = 13.73   #Spec
       tire_stiffness_factor = 0.385
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.IONIQ_EV:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1490. + STD_CARGO_KG   #weight per hyundai site https://www.hyundaiusa.com/ioniq-electric/specifications.aspx
       ret.wheelbase = 2.7
       ret.steerRatio = 13.25   #Spec
       ret.steerRateCost = 0.4
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.NEXO:
-      ret.lateralTuning.pid.kf = 0.00005
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGain = 3.0
+      ret.lateralTuning.indi.outerLoopGain = 2.0
+      ret.lateralTuning.indi.timeConstant = 1.0
+      ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+      ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
+      #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 1885. + STD_CARGO_KG
       ret.wheelbase = 2.79
       ret.steerRatio = 12.5
-      ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
+      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+      #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.25], [0.05]]
     elif candidate == CAR.MOHAVE:
       ret.lateralTuning.init('indi')
       ret.lateralTuning.indi.innerLoopGain = 3.0

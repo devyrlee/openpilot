@@ -201,7 +201,7 @@ class CarInterface(CarInterfaceBase):
       ret.steerLimitTimer = 0.4 # stock is 0.01 but 0.04 seems to work well
       tire_stiffness_factor = 0.6 # LiveParameters (Tunder's 2020)
       ret.steerRateCost = 1.0
-      ret.steerRatio = 12.0
+      ret.steerRatio = 13.0
       #ret.lateralTuning.pid.kf = 0.00005
       ret.mass = 2250. + STD_CARGO_KG
       ret.wheelbase = 2.895
